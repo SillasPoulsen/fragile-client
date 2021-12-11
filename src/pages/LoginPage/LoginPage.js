@@ -33,7 +33,7 @@ function LoginPage(props) {
       );
 
       // or with a service
-      // const response = await authService.login(requestBody);
+      //const response = await authService.login(requestBody);
 
       // Save the token and set the user as logged in ...
       const token = response.data.authToken;
@@ -55,7 +55,12 @@ function LoginPage(props) {
         <input type="text" name="email" value={email} onChange={handleEmail} />
 
         <label>Password:</label>
-        <input type="password" name="password" value={password} onChange={handlePassword} />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handlePassword}
+        />
 
         <button type="submit">Login</button>
       </form>

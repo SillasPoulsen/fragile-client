@@ -33,6 +33,26 @@ class AuthService {
     // return axios.post("http://localhost:5005/auth/verify");
     return this.api.get("/auth/verify");
   };
+
+  journeys = async () => {
+    return this.api.get("/journey");
+  };
+
+  userJourneys = async () => {
+    return this.api.get("/api/users/subscriptions");
+  };
+
+  journeyObj = async (journeyId) => {
+    return this.api.get(`/journey/${journeyId}`);
+  };
+
+  oneEpisode = async (episodeId) => {
+    return this.api.get(`/episode/${episodeId}`);
+  };
+
+  postNote = async (requestBody) => {
+    return this.api.post("/note", requestBody);
+  };
 }
 
 // Create one instance of the service

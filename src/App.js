@@ -8,9 +8,11 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import JourneyPage from "./pages/JourneyPage/Journeypage";
 
-import IsPrivate from './components/IsPrivate/IsPrivate';
+import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
+import EpisodePage from "./pages/AudioPage/AudioPage";
 
 function App() {
   return (
@@ -19,11 +21,52 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route
+          path="/journey/:id"
+          element={
+            <IsPrivate>
+              <JourneyPage />
+            </IsPrivate>
+          }
+        />
 
-        <Route path="/profile" element={<IsPrivate> <ProfilePage /> </IsPrivate>} />
+        <Route
+          path="/episode/:id"
+          element={
+            <IsPrivate>
+              <EpisodePage />
+            </IsPrivate>
+          }
+        />
 
-        <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
-        <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
+        <Route
+          path="/profile"
+          element={
+            <IsPrivate>
+              {" "}
+              <ProfilePage />{" "}
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              {" "}
+              <SignupPage />{" "}
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              {" "}
+              <LoginPage />{" "}
+            </IsAnon>
+          }
+        />
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
