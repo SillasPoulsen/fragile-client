@@ -1,5 +1,4 @@
-import { AuthContext } from "../../context/auth.context";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import authService from "../../services/auth.service";
@@ -15,37 +14,30 @@ function JourneyPage() {
     try {
       const response = await authService.journeyObj(journeyId);
       setJourney(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getJourney();
   }, []);
 
-  console.log("This is the one", journey.episodes);
-
   return (
     <div>
-      {/* <h1>{journey.name}</h1> */}
-      {/* {journey.length > 0 && */}
-      {/* journey.map((journey) => { */}
-      {/* return ( */}
-      {/* <div> */}
-      {/* {journey.episodes.map((c, i) => ( */}
-      {/* <div> */}
-      {/* <h3>{c.description}</h3> */}
-      {/* </div> */}
-      {/* ))} */}
-      {/* </div> */}
-      {/* ); */}
-      {/* })} */}
-      {/* <h1>{journey.name}</h1> */}
-      {/* {journey.length > 0 && */}
-      {/* journey.map((episodes) => { */}
-      {/* episodes.episodes.map((eps) => { */}
-      {/* return <h1>hello</h1>; */}
-      {/* }); */}
-      {/* })} */}
+      <div>{journey && <h1>{journey.name}</h1>}</div>
+      <div>
+        {journey.episodes &&
+          journey.episodes.map((episodes) => {
+            return (
+              <div key={episodes._id}>
+              <Link to={`/episode/${episodes._id}`}>
+                <p>{episodes.description}</p>
+              </Link>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

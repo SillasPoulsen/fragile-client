@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import JourneyPage from "./pages/JourneyPage/Journeypage";
+import NotesPage from "./pages/NotesPage/NotesPage";
 
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
@@ -38,6 +39,15 @@ function App() {
             </IsPrivate>
           }
         />
+
+<Route
+   path="/episode/:episodeId/notes"
+   element={
+     <IsPrivate>
+       <NotesPage />
+     </IsPrivate>
+   }
+ />
 
         <Route
           path="/profile"

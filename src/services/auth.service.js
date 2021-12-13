@@ -53,6 +53,14 @@ class AuthService {
   postNote = async (requestBody) => {
     return this.api.post("/note", requestBody);
   };
+
+  allNotes = async (episodeId) => {
+    return this.api.get(`/episode/${episodeId}/notes`)
+  }
+
+  allUserInfo = async () => {
+    return this.api.get("/api/users/allinfo")
+  }
 }
 
 // Create one instance of the service

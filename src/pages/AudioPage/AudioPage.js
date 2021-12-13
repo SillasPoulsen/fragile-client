@@ -1,6 +1,6 @@
 import authService from "../../services/auth.service";
 import { useContext, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 function EpisodePage() {
   const requestBody = useParams();
@@ -8,6 +8,7 @@ function EpisodePage() {
   const [episode, setEpisode] = useState([]);
   const [textAreaValue, setTextAreaValue] = useState("Your input");
   const [radioValue, setradioValue] = useState(true);
+  const navigate = useNavigate()
 
   const handleChange = (event) => {
     setTextAreaValue(event.target.value);
@@ -43,8 +44,13 @@ function EpisodePage() {
         public: radioValue,
         episode: episodeId,
       };
+
       //send it to the DB
       await authService.postNote(requestBody);
+
+
+      navigate('/episode/' + episodeId + "/notes");
+
       setTextAreaValue("");
       setradioValue(true);
     } catch (error) {
@@ -76,7 +82,9 @@ function EpisodePage() {
           />
         </div>
         <div>
+        {/* <Link to={`/episode/${episodeId}/notes`}> */}
           <button type="submit">Submit</button>
+          {/* </Link> */}
         </div>
       </form>
     </div>
