@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
 
 function LoginPage(props) {
+  const { user } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -38,6 +39,13 @@ function LoginPage(props) {
       // Save the token and set the user as logged in ...
       const token = response.data.authToken;
       logInUser(token);
+
+      console.log(token);
+
+      console.log("this is the user console.log", user);
+      if (user.hasDone.length === 0) {
+        navigate("/profile");
+      }
 
       navigate("/");
     } catch (error) {

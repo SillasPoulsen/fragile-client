@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,400;0,500;0,600;1,400;1,800&display=swap");
+
+.HomepageNotLoggedIn *,
+.Homepageloggedin * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  font-family: Tomorrow;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 31px;
+}
+
+.logofrontpage {
+  width: 229px;
+  height: 61px;
+  font-family: Tomorrow;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 60px;
+  letter-spacing: 0.2em;
+  color: #016a49;
+}
+
+img {
+  margin-top: 20px;
+  max-width: 300px;
+}
+
+.btn-signup {
+  width: 170px;
+  height: 50px;
+  left: 110px;
+  top: 677px;
+  color: #016a49;
+  background: #f5f3f1;
+  border: 1px solid #016a49;
+  border-radius: 30px;
+  margin-top: 60px;
+  text-decoration-line: none;
+}
+
+.signup,
+.JourneyCard a {
+  text-decoration: none;
+}
+
+.btn-signup:hover {
+  color: #194bb9;
+  border: 1px solid#194BB9;
+}
+
+.btn-login:hover {
+  color: #194bb9;
+}
+
+.btn-login {
+  margin-top: 15px;
+  color: #016a49;
+  text-decoration-line: underline;
+}
+
+.JourneyCard {
+  width: 337px;
+  height: 260px;
+  left: 39px;
+  top: 188px;
+  background: #fefbf8;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.JourneyCard > h3 {
+  text-decoration: none !important;
+}
+
+h3 {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 33px;
+  text-align: center;
+}
+
+.player > img {
+  width: 62px;
+}
+.Wrapper {
+  display: flex;
+  justify-content: center;
+}

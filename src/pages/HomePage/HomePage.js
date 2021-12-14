@@ -2,11 +2,15 @@ import { AuthContext } from "../../context/auth.context";
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import authService from "../../services/auth.service";
+import selfLove from "../../images/selflove 1.png";
+import player from "../../images/Group 1 (5).png";
+
+import "./HomePage.css";
 
 function HomePage() {
   const [journeys, setJourneys] = useState([]);
   const [userJourneys, setUserJourneys] = useState([]);
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   const getAllJourneys = async () => {
     try {
@@ -25,17 +29,42 @@ function HomePage() {
   };
 
   useEffect(() => {
-    getAllJourneys();
-    getUserJourneys();
-  }, []);
+    if (isLoggedIn) {
+      getAllJourneys();
+      getUserJourneys();
+    }
+  }, [isLoggedIn]);
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      {isLoggedIn && (
+    <div className="Wrapper">
+      {!isLoggedIn && (
         <>
+          <div className="HomepageNotLoggedIn">
+            <div className="selfLove">
+              <img src={selfLove} alt="Flawsfigure" />
+            </div>
+            <div>
+              <h1 className="logofrontpage">Flaws</h1>
+              <p>Because we all feel a little flawed at times</p>
+            </div>
+            <div className="signup">
+              <Link to="/signup">
+                <button className="btn-signup">Singup</button>
+              </Link>
+            </div>
+            <div>
+              <Link to="/login">
+                <a className="btn-login" href="{#}">
+                  Login
+                </a>
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
+      {isLoggedIn && (
+        <div className="Wrapper">
           <div className="Homepageloggedin">
-            <h1>Welcome to FLAWS </h1>
             <p>This is all Your Journeys</p>
             {userJourneys &&
               userJourneys.map((oneUserJourney) => {
@@ -43,6 +72,9 @@ function HomePage() {
                   <div className="JourneyCard" key={oneUserJourney._id}>
                     <Link to={"#"}>
                       <h3>{oneUserJourney.name}</h3>
+                      <div className="player">
+                        <img src={player} alt="play-symbol" />
+                      </div>
                     </Link>
                   </div>
                 );
@@ -55,12 +87,15 @@ function HomePage() {
                   <div className="JourneyCard" key={oneJourney._id}>
                     <Link to={`/journey/${oneJourney._id}`}>
                       <h3>{oneJourney.name}</h3>
+                      <div className="player">
+                        <img src={player} alt="play-symbol" />
+                      </div>
                     </Link>
                   </div>
                 );
               })}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

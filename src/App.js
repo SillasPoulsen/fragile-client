@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar/Navbar";
+import TheNavbar from "./components/Navbar/Navbar";
 
 import HomePage from "./pages/HomePage/HomePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
@@ -18,7 +18,7 @@ import EpisodePage from "./pages/AudioPage/AudioPage";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <TheNavbar />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -40,14 +40,14 @@ function App() {
           }
         />
 
-<Route
-   path="/episode/:episodeId/notes"
-   element={
-     <IsPrivate>
-       <NotesPage />
-     </IsPrivate>
-   }
- />
+        <Route
+          path="/episode/:episodeId/notes"
+          element={
+            <IsPrivate>
+              <NotesPage />
+            </IsPrivate>
+          }
+        />
 
         <Route
           path="/profile"

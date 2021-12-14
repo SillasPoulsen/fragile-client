@@ -1,7 +1,11 @@
 /* src/index.css */
 
+@import url("https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,400;0,600;1,400;1,800&display=swap");
+
 body {
   margin: 0;
+  font-family: "Tomorrow", sans-serif;
+  background-color: #f5f3f1;
 }
 
 a {
@@ -32,20 +36,10 @@ textarea {
 }
 
 nav {
-  background: #515f7d;
-  color: white;
   padding: 0px 20px;
   box-shadow: 0px 1px 2px gray;
   width: 100%;
-  margin-bottom: 15px;
   padding: 5px;
-}
-
-nav li {
-  list-style: none;
-  color: white;
-  font-size: 24px;
-  font-weight: 600;
 }
 
 .card {
