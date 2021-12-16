@@ -3,6 +3,8 @@ import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
 import { Link } from "react-router-dom";
 
+import "./ProfilePage.css";
+
 function ProfilePage() {
   const { isLoggedIn } = useContext(AuthContext);
   const [subscriptions, setSubscriptions] = useState([]);
@@ -30,7 +32,7 @@ function ProfilePage() {
             {subscriptions &&
               subscriptions.map((sub) => {
                 return (
-                  <div className="JourneyCard" key={sub._id}>
+                  <div className="Journey" key={sub._id}>
                     <Link to={"#"}>
                       <h3>{sub.name}</h3>
                     </Link>
@@ -38,16 +40,18 @@ function ProfilePage() {
                 );
               })}
             <p>This is all your notes</p>
-            {notes.length > 0 &&
-              notes.map((note, i) => {
-                return (
-                  <div className="JourneyCard" key={i}>
-                    {/* <Link to={`/journey/${oneJourney._id}`}> */}
-                    <h3>{note.description}</h3>
-                    {/* </Link> */}
-                  </div>
-                );
-              })}
+            <div className="bottom">
+              {notes.length > 0 &&
+                notes.map((note, i) => {
+                  return (
+                    <div className="JourneyCard" key={i}>
+                      {/* <Link to={`/journey/${oneJourney._id}`}> */}
+                      <p>{note.description}</p>
+                      {/* </Link> */}
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       )}

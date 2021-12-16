@@ -66,34 +66,37 @@ function HomePage() {
         <div className="Wrapper">
           <div className="Homepageloggedin">
             <p>This is all Your Journeys</p>
-            {userJourneys &&
-              userJourneys.map((oneUserJourney) => {
-                return (
-                  <div className="JourneyCard" key={oneUserJourney._id}>
-                    <Link to={"#"}>
-                      <h3>{oneUserJourney.name}</h3>
-                      <div className="player">
-                        <img src={player} alt="play-symbol" />
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
-
+            <div className="Journey">
+              {userJourneys &&
+                userJourneys.map((oneUserJourney) => {
+                  return (
+                    <div className="JourneyCard" key={oneUserJourney._id}>
+                      <Link to={`/journey/${oneUserJourney._id}`}>
+                        <h3>{oneUserJourney.name}</h3>
+                        <div className="player">
+                          <img src={player} alt="play-symbol" />
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+            </div>
             <p>This is all Journeys</p>
-            {journeys.length > 0 &&
-              journeys.map((oneJourney) => {
-                return (
-                  <div className="JourneyCard" key={oneJourney._id}>
-                    <Link to={`/journey/${oneJourney._id}`}>
-                      <h3>{oneJourney.name}</h3>
-                      <div className="player">
-                        <img src={player} alt="play-symbol" />
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
+            <div className="Journey">
+              {journeys.length > 0 &&
+                journeys.map((oneJourney) => {
+                  return (
+                    <div className="JourneyCard" key={oneJourney._id}>
+                      <Link to={`/journey/${oneJourney._id}`}>
+                        <h3>{oneJourney.name}</h3>
+                        <div className="player">
+                          <img src={player} alt="play-symbol" />
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       )}

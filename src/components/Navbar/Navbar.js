@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function TheNavBar() {
   const [windowDimension, setWindowDimension] = useState(null);
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { logOutUser } = useContext(AuthContext);
 
   useEffect(() => {
     setWindowDimension(window.innerWidth);
@@ -30,37 +30,40 @@ function TheNavBar() {
       {isMobile ? (
         <MobileNavbar.Wrapper>
           <MobileNavbar.Items>
-            <MobileNavbar.Item>
-              <MobileNavbar.Icon>
-                <Feather size={16} />
-              </MobileNavbar.Icon>
-              Feather
-            </MobileNavbar.Item>
-            <MobileNavbar.Item>
-              <MobileNavbar.Icon>
-                <Bookmark size={16} />
-              </MobileNavbar.Icon>
-              Blog
-            </MobileNavbar.Item>
-            <MobileNavbar.Item>
-              <MobileNavbar.Icon>
-                <User size={16} />
-              </MobileNavbar.Icon>
-              Profile
-            </MobileNavbar.Item>
+            <Link to="/">
+              <MobileNavbar.Item>
+                <MobileNavbar.Icon>
+                  <Feather size={16} />
+                </MobileNavbar.Icon>
+                Journeys
+              </MobileNavbar.Item>
+            </Link>
+            {/* <MobileNavbar.Item> */}
+            {/* <MobileNavbar.Icon> */}
+            {/* <Bookmark size={16} /> */}
+            {/* </MobileNavbar.Icon> */}
+            {/* Blog */}
+            {/* </MobileNavbar.Item> */}
+            <Link to="/profile">
+              <MobileNavbar.Item>
+                <MobileNavbar.Icon>
+                  <User size={16} />
+                </MobileNavbar.Icon>
+                Profile
+              </MobileNavbar.Item>
+            </Link>
           </MobileNavbar.Items>
         </MobileNavbar.Wrapper>
       ) : (
         <Navbar.Wrapper>
           <Link to="/">
-            <Navbar.Logo>Home</Navbar.Logo>
+            <Navbar.Logo>Flaws</Navbar.Logo>
           </Link>
           <Navbar.Items>
             <Navbar.Item onClick={logOutUser}>Logout</Navbar.Item>
             <Link to="/login">
               <Navbar.Item>Login</Navbar.Item>
             </Link>
-            <Navbar.Item>About</Navbar.Item>
           </Navbar.Items>
         </Navbar.Wrapper>
       )}
@@ -90,8 +93,13 @@ const Navbar = {
     background-color: white;
   `,
   Logo: styled.h1`
-    border: 1px solid gray;
     padding: 0.5rem 1rem;
+    font-family: Tomorrow;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #016a49;
+    letter-spacing: 0.2em;
   `,
   Items: styled.ul`
     display: flex;

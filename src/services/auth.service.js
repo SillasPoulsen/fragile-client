@@ -42,6 +42,10 @@ class AuthService {
     return this.api.get("/api/users/subscriptions");
   };
 
+  subscribe = async (requestBody) => {
+    return this.api.post("/journey/:id", requestBody);
+  };
+
   journeyObj = async (journeyId) => {
     return this.api.get(`/journey/${journeyId}`);
   };
@@ -55,12 +59,16 @@ class AuthService {
   };
 
   allNotes = async (episodeId) => {
-    return this.api.get(`/episode/${episodeId}/notes`)
-  }
+    return this.api.get(`/episode/${episodeId}/notes`);
+  };
+
+  likeNote = async (noteId) => {
+    return this.api.post(`/note/like`, noteId);
+  };
 
   allUserInfo = async () => {
-    return this.api.get("/api/users/allinfo")
-  }
+    return this.api.get("/api/users/allinfo");
+  };
 }
 
 // Create one instance of the service

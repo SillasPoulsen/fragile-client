@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
+
+import "./AudioPage.css";
 
 function EpisodePage() {
   const requestBody = useParams();
@@ -47,6 +50,10 @@ function EpisodePage() {
       // Prevent the page reload (default behavior
       e.preventDefault();
 
+      if (textAreaValue === "Your input") {
+        return;
+      }
+
       // Get the data from the state/inputs
       const requestBody = {
         textInput: textAreaValue,
@@ -64,14 +71,17 @@ function EpisodePage() {
     } catch (error) {}
   };
 
+  console.log(note);
+
   return (
-    <div>
-      <h1>{episode.description}</h1>
+    <div className="Audiocontent">
+      <AudioPlayer />
+      <h1 className="title">{episode.title}</h1>
+      <p>{episode.description}</p>
 
       {!hasDone && (
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Enter value :</label>
             <textarea
               value={textAreaValue}
               onChange={handleChange}
@@ -79,6 +89,7 @@ function EpisodePage() {
             />
           </div>
           <div>
+            <label>Share with the community</label>
             <input
               type="checkbox"
               value={radioValue}
@@ -87,14 +98,15 @@ function EpisodePage() {
             />
           </div>
           <div>
-            <button type="submit">Submit</button>
+            <button className="submit" type="submit">
+              Submit
+            </button>
           </div>
         </form>
       )}
       {hasDone && (
         <>
-          <h1>{note.textInput}</h1>
-          <p>Hello</p>
+          <p>{note.textInput}</p>
         </>
       )}
     </div>
