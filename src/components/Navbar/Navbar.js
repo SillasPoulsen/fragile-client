@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import styled, { createGlobalStyle } from "styled-components";
-import { Bookmark, User, Feather } from "react-feather";
+import { Bookmark, User, Feather, Target } from "react-feather";
 import { Link } from "react-router-dom";
 
 function TheNavBar() {
@@ -33,7 +33,7 @@ function TheNavBar() {
             <Link to="/">
               <MobileNavbar.Item>
                 <MobileNavbar.Icon>
-                  <Feather size={16} />
+                  <Target size={16} />
                 </MobileNavbar.Icon>
                 Journeys
               </MobileNavbar.Item>
@@ -47,9 +47,9 @@ function TheNavBar() {
             <Link to="/profile">
               <MobileNavbar.Item>
                 <MobileNavbar.Icon>
-                  <User size={16} />
+                  <Feather size={16} />
                 </MobileNavbar.Icon>
-                Profile
+                Notes
               </MobileNavbar.Item>
             </Link>
           </MobileNavbar.Items>

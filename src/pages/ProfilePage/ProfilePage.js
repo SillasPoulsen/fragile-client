@@ -27,31 +27,18 @@ function ProfilePage() {
       <h1>Profile Page</h1>
       {isLoggedIn && (
         <div className="wrapper">
-          <div className="Homepageloggedin">
-            <p>This is all Your Journeys</p>
-            {subscriptions &&
-              subscriptions.map((sub) => {
+          <p>This is all your notes</p>
+          <div className="bottom">
+            {notes.length > 0 &&
+              notes.map((note, i) => {
                 return (
-                  <div className="Journey" key={sub._id}>
-                    <Link to={"#"}>
-                      <h3>{sub.name}</h3>
-                    </Link>
+                  <div className="noteCard" key={i}>
+                    {/* <Link to={`/journey/${oneJourney._id}`}> */}
+                    <p>{note.description}</p>
+                    {/* </Link> */}
                   </div>
                 );
               })}
-            <p>This is all your notes</p>
-            <div className="bottom">
-              {notes.length > 0 &&
-                notes.map((note, i) => {
-                  return (
-                    <div className="JourneyCard" key={i}>
-                      {/* <Link to={`/journey/${oneJourney._id}`}> */}
-                      <p>{note.description}</p>
-                      {/* </Link> */}
-                    </div>
-                  );
-                })}
-            </div>
           </div>
         </div>
       )}

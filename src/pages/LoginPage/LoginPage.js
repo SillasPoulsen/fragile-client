@@ -26,15 +26,15 @@ function LoginPage(props) {
       e.preventDefault();
       const requestBody = { email, password };
 
-      const authToken = localStorage.getItem("authToken");
-      const response = await axios.post(
-        "http://localhost:5005/auth/login",
-        requestBody,
-        { headers: { Authorization: `Bearer ${authToken}` } }
-      );
+      // const authToken = localStorage.getItem("authToken");
+      // const response = await axios.post(
+      // "http://localhost:5005/auth/login",
+      // requestBody,
+      // { headers: { Authorization: `Bearer ${authToken}` } }
+      // );
 
       // or with a service
-      //const response = await authService.login(requestBody);
+      const response = await authService.login(requestBody);
 
       // Save the token and set the user as logged in ...
       const token = response.data.authToken;
