@@ -62,6 +62,10 @@ class AuthService {
     return this.api.get(`/episode/${episodeId}/notes`);
   };
 
+  allUserNotes = async (episodeId) => {
+    return this.api.get("/note");
+  };
+
   likeNote = async (noteId) => {
     return this.api.post(`/note/like`, noteId);
   };

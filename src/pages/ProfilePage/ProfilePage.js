@@ -7,14 +7,13 @@ import "./ProfilePage.css";
 
 function ProfilePage() {
   const { isLoggedIn } = useContext(AuthContext);
-  const [subscriptions, setSubscriptions] = useState([]);
   const [notes, setNotes] = useState([]);
 
   const getUserJourneys = async () => {
     try {
-      const response = await authService.allUserInfo();
-      setSubscriptions(response.data.subscriptions);
-      setNotes(response.data.hasDone);
+      const response = await authService.allUserNotes();
+      setNotes(response.data);
+      console.log(response.data);
     } catch (error) {}
   };
 
@@ -34,7 +33,7 @@ function ProfilePage() {
                 return (
                   <div className="noteCard" key={i}>
                     {/* <Link to={`/journey/${oneJourney._id}`}> */}
-                    <p>{note.description}</p>
+                    <p>{note.textInput}</p>
                     {/* </Link> */}
                   </div>
                 );

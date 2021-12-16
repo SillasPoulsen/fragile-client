@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import JourneyPage from "./pages/JourneyPage/Journeypage";
 import NotesPage from "./pages/NotesPage/NotesPage";
+import IntroductionPage from "./pages/IntroductionPage/IntroductionPage";
 
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
@@ -22,6 +23,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        <Route path="/introduction" element={<IntroductionPage />} />
 
         <Route
           path="/journey/:id"

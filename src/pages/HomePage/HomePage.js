@@ -1,6 +1,6 @@
 import { AuthContext } from "../../context/auth.context";
 import { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
 import selfLove from "../../images/selflove 1.png";
 import player from "../../images/Group 1 (5).png";
@@ -10,7 +10,9 @@ import "./HomePage.css";
 function HomePage() {
   const [journeys, setJourneys] = useState([]);
   const [userJourneys, setUserJourneys] = useState([]);
-  const { isLoggedIn } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const getAllJourneys = async () => {
     try {
@@ -29,11 +31,11 @@ function HomePage() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && user) {
       getAllJourneys();
       getUserJourneys();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, user]);
 
   return (
     <div className="Wrapper">
@@ -65,7 +67,9 @@ function HomePage() {
       {isLoggedIn && (
         <div className="Wrapper">
           <div className="Homepageloggedin">
-            <p>This is all Your Journeys</p>
+            {/* {user && !user.hasDone.length && navigate("/introduction")} */}
+
+            <p>Your Subscriptions</p>
             <div className="Journey">
               {userJourneys &&
                 userJourneys.map((oneUserJourney) => {
@@ -81,7 +85,7 @@ function HomePage() {
                   );
                 })}
             </div>
-            <p>This is all Journeys</p>
+            <p>Inpiration</p>
             <div className="Journey">
               {journeys.length > 0 &&
                 journeys.map((oneJourney) => {

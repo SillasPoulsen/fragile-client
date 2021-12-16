@@ -2,19 +2,17 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 import "./JourneyPage.css";
-import hasDone from "../../images/Group 2.png";
-import hasNotDone from "../../images/Ellipse 32.png";
 import authService from "../../services/auth.service";
 import { AuthContext } from "../../context/auth.context";
 import { Circle, CheckCircle } from "react-feather";
 
 function JourneyPage() {
   const [journey, setJourney] = useState([]);
+  const [hasDone, setHasDone] = useState([]);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const requestBody = useParams();
   const journeyId = requestBody.id;
-  const { user, isLoading } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const subscribe = async () => {
     try {
@@ -24,7 +22,6 @@ function JourneyPage() {
       const isUserSubscribed = oneJourney.belongsTo.includes(user._id);
       setIsSubscribed(isUserSubscribed);
       setJourney(oneJourney);
-      //navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -36,6 +33,9 @@ function JourneyPage() {
         if (!user) {
           return;
         }
+        const userNotes = await authService.allUserNotes();
+        setHasDone(userNotes.data);
+        console.log("This is userNotes.data", userNotes.data);
         const response = await authService.journeyObj(journeyId);
         const oneJourney = response.data;
         const isUserSubscribed = oneJourney.belongsTo.includes(user._id);
@@ -46,7 +46,6 @@ function JourneyPage() {
       }
     };
     getJourney();
-    console.log(user);
   }, [user]);
 
   return (
@@ -74,7 +73,7 @@ function JourneyPage() {
               <div className="card" key={episodes._id}>
                 <Link to={`/episode/${episodes._id}`}>
                   <p className="episodeTitle">{episodes.title}</p>
-                  {user.hasDone.includes(episodes._id) ? (
+                  {user ? (
                     <CheckCircle size={16} color="green" />
                   ) : (
                     <Circle size={16} />

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import styled, { createGlobalStyle } from "styled-components";
-import { Bookmark, User, Feather, Target } from "react-feather";
+import { Feather, Target } from "react-feather";
 import { Link } from "react-router-dom";
 
 function TheNavBar() {

@@ -71,8 +71,6 @@ function EpisodePage() {
     } catch (error) {}
   };
 
-  console.log(note);
-
   return (
     <div className="Audiocontent">
       <AudioPlayer />
@@ -106,7 +104,8 @@ function EpisodePage() {
       )}
       {hasDone && (
         <>
-          <p>{note.textInput}</p>
+          <h5>This is your note:</h5>
+          <p className="noteText">{note.textInput}</p>
         </>
       )}
     </div>
