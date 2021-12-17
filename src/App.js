@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 
 import TheNavbar from "./components/Navbar/Navbar";
 
@@ -16,10 +17,27 @@ import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
 import EpisodePage from "./pages/AudioPage/AudioPage";
 
+import { AuthContext } from "./context/auth.context";
+
 function App() {
+  const [show, setShow] = useState(false);
+  const { isLoggedIn } = useContext(AuthContext);
+
+  console.log(isLoggedIn);
+
+  // if (!isLoggedIn) {
+  // setShow(false);
+  // }
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setShow(false);
+    }
+  }, [isLoggedIn]);
+
   return (
     <div className="App">
-      <TheNavbar />
+      {show && <TheNavbar />}
 
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -76,8 +94,7 @@ function App() {
           path="/login"
           element={
             <IsAnon>
-              {" "}
-              <LoginPage />{" "}
+              <LoginPage setShow={setShow} show={show} />
             </IsAnon>
           }
         />

@@ -33,9 +33,8 @@ function JourneyPage() {
         if (!user) {
           return;
         }
-        const userNotes = await authService.allUserNotes();
+        const userNotes = await authService.userHasDone();
         setHasDone(userNotes.data);
-        console.log("This is userNotes.data", userNotes.data);
         const response = await authService.journeyObj(journeyId);
         const oneJourney = response.data;
         const isUserSubscribed = oneJourney.belongsTo.includes(user._id);
@@ -73,7 +72,7 @@ function JourneyPage() {
               <div className="card" key={episodes._id}>
                 <Link to={`/episode/${episodes._id}`}>
                   <p className="episodeTitle">{episodes.title}</p>
-                  {user ? (
+                  {hasDone.includes(episodes._id) ? (
                     <CheckCircle size={16} color="green" />
                   ) : (
                     <Circle size={16} />

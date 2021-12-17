@@ -46,6 +46,10 @@ class AuthService {
     return this.api.post("/journey/:id", requestBody);
   };
 
+  userHasDone = async () => {
+    return this.api.get("/api/users/hasDone");
+  };
+
   journeyObj = async (journeyId) => {
     return this.api.get(`/journey/${journeyId}`);
   };

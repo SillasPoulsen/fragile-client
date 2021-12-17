@@ -42,30 +42,34 @@ function NotesPage() {
   return (
     <div>
       <h1>Other peoples thoughts</h1>
-      {notes &&
-        notes.map((note) => {
-          return (
-            <div className="card" key={note._id}>
-              <p className="episodeTitle">{note.textInput}</p>
-              <p> liked: {note.upVotes.length} </p>
+      <div className="wrapper">
+        {notes &&
+          notes.map((note) => {
+            return (
+              <div className="card" key={note._id}>
+                <p className="cardText">{note.textInput}</p>
+                <p className="likes"> liked: {note.upVotes.length} </p>
 
-              {note.upVotes.includes(user._id) ? (
-                <Heart
-                  size={16}
-                  color="red"
-                  fill="red"
-                  onClick={() => handleLike(note._id)}
-                />
-              ) : (
-                <Heart
-                  size={16}
-                  color="red"
-                  onClick={() => handleLike(note._id)}
-                />
-              )}
-            </div>
-          );
-        })}
+                {note.upVotes.includes(user._id) ? (
+                  <Heart
+                    className="heart"
+                    size={16}
+                    color="red"
+                    fill="red"
+                    onClick={() => handleLike(note._id)}
+                  />
+                ) : (
+                  <Heart
+                    className="heart"
+                    size={16}
+                    color="red"
+                    onClick={() => handleLike(note._id)}
+                  />
+                )}
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

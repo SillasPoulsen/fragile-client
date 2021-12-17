@@ -61,9 +61,6 @@ function TheNavBar() {
           </Link>
           <Navbar.Items>
             <Navbar.Item onClick={logOutUser}>Logout</Navbar.Item>
-            <Link to="/login">
-              <Navbar.Item>Login</Navbar.Item>
-            </Link>
           </Navbar.Items>
         </Navbar.Wrapper>
       )}

@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
+import "./IntroductionPage.css";
 
 function IntroductionPage() {
   return (
     <>
-      <p>
-        We know it’s not easy sharing personal and intimate details, we know
-        it’s difficult facing obstacles, we know you might feel alone. That’s
-        why we created Fragile. All you share with Fragile, will be anonymized
-        and won’t be shared with 3rd parties.{" "}
+      <p className="intro">
+        We know it’s not easy sharing personal and intimate details. <br />
+        <br /> We know it’s difficult facing obstacles. <br />
+        <br /> We know you might feel alone. <br /> <br />
+        That’s why we created Fragile. All you share with Fragile, will be
+        anonymized and <b>won’t be shared with 3rd parties.</b>{" "}
       </p>
       <Link to="/episode/61b9e89384c5217a3f53ce6c">
         <button className="btn-signup">Got it</button>

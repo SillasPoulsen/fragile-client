@@ -16,7 +16,7 @@ function EpisodePage() {
   const [radioValue, setradioValue] = useState(true);
   const [hasDone, setHasDone] = useState(false);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   const handleChange = (event) => {
     setTextAreaValue(event.target.value);
@@ -33,9 +33,10 @@ function EpisodePage() {
   const getEpisode = async () => {
     try {
       const response = await authService.oneEpisode(episodeId);
+      const userHasDone = await authService.userHasDone(episodeId);
       setNote(response.data.firstUserNote);
       setEpisode(response.data.currentEpisode);
-      setHasDone(user.hasDone.includes(episodeId));
+      setHasDone(userHasDone.data.includes(episodeId));
     } catch (error) {}
   };
 
@@ -62,8 +63,11 @@ function EpisodePage() {
       };
 
       //send it to the DB
-      await authService.postNote(requestBody);
+      const response = await authService.postNote(requestBody);
 
+      console.log("Why doesnt the response com??response :>> ", response);
+      setUser(response.data.userObj);
+      console.log(response.data.userObj);
       navigate("/episode/" + episodeId + "/notes");
 
       setTextAreaValue("");

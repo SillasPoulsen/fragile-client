@@ -39,6 +39,12 @@ img {
   max-width: 300px;
 }
 
+.planet {
+  width: 70px;
+  margin-left: auto;
+  margin-right: 75%;
+}
+
 .btn-signup {
   width: 170px;
   height: 50px;

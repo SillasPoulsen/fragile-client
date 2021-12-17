@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/auth.context";
 
 import authService from "../../services/auth.service";
 
-function LoginPage(props) {
+function LoginPage({ setShow, show }) {
   const { user } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,10 +43,10 @@ function LoginPage(props) {
       console.log(token);
 
       console.log("this is the user console.log", user);
-      if (user.hasDone.length === 0) {
-        navigate("/profile");
-      }
-
+      //if (user.hasDone.length === 0) {
+      //  navigate("/profile");
+      //}
+      setShow(!show);
       navigate("/");
     } catch (error) {
       // If the request resolves with an error, set the error message in the state
@@ -59,11 +59,16 @@ function LoginPage(props) {
       <h1>Login</h1>
 
       <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="text" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
         <input
+          placeholder="Email"
+          type="text"
+          name="email"
+          value={email}
+          onChange={handleEmail}
+        />
+
+        <input
+          placeholder="Password"
           type="password"
           name="password"
           value={password}
