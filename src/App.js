@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      {show && <TheNavbar />}
+      <TheNavbar />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
