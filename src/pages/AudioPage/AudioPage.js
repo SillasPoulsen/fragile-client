@@ -1,5 +1,5 @@
 import authService from "../../services/auth.service";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
@@ -30,7 +30,7 @@ function EpisodePage() {
     setTextAreaValue("");
   };
 
-  const getEpisode = async () => {
+  const getEpisode = useCallback(async () => {
     try {
       const response = await authService.oneEpisode(episodeId);
       const userHasDone = await authService.userHasDone(episodeId);
@@ -38,13 +38,13 @@ function EpisodePage() {
       setEpisode(response.data.currentEpisode);
       setHasDone(userHasDone.data.includes(episodeId));
     } catch (error) {}
-  };
+  }, [episodeId]);
 
   useEffect(() => {
     if (user) {
       getEpisode();
     }
-  }, [user]);
+  }, [getEpisode, user]);
 
   const handleSubmit = async (e) => {
     try {
@@ -65,9 +65,7 @@ function EpisodePage() {
       //send it to the DB
       const response = await authService.postNote(requestBody);
 
-      console.log("Why doesnt the response com??response :>> ", response);
       setUser(response.data.userObj);
-      console.log(response.data.userObj);
       navigate("/episode/" + episodeId + "/notes");
 
       setTextAreaValue("");

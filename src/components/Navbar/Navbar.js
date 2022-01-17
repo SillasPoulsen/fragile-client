@@ -60,6 +60,9 @@ function TheNavBar() {
             <Navbar.Logo>Flaws</Navbar.Logo>
           </Link>
           <Navbar.Items>
+            <Link to="/profile">
+              <Navbar.Item>Profile</Navbar.Item>
+            </Link>
             <Navbar.Item onClick={logOutUser}>Logout</Navbar.Item>
           </Navbar.Items>
         </Navbar.Wrapper>

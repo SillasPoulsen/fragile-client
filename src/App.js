@@ -23,12 +23,6 @@ function App() {
   const [show, setShow] = useState(false);
   const { isLoggedIn } = useContext(AuthContext);
 
-  console.log(isLoggedIn);
-
-  // if (!isLoggedIn) {
-  // setShow(false);
-  // }
-
   useEffect(() => {
     if (!isLoggedIn) {
       setShow(false);
@@ -37,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <TheNavbar />
+      {isLoggedIn && <TheNavbar />}
 
       <Routes>
         <Route path="/" element={<HomePage />} />

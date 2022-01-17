@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
 import selfLove from "../../images/selflove 1.png";
 import Planet from "../../images/Group 3.png";
-import Sun from "../../images/Group 4.png";
 import player from "../../images/Group 1 (5).png";
 
 import "./HomePage.css";
@@ -13,6 +12,7 @@ function HomePage() {
   const [journeys, setJourneys] = useState([]);
   const [userHasDone, setuserHasDone] = useState([]);
   const [userJourneys, setUserJourneys] = useState([]);
+  const [isReady, setIsReady] = useState(false);
   const { user, isLoggedIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -36,16 +36,26 @@ function HomePage() {
 
   useEffect(() => {
     if (isLoggedIn && user) {
-      getAllJourneys();
-      getUserJourneys();
       const fetchUserRes = async () => {
         const userResponse = await authService.allUserInfo();
         setuserHasDone(userResponse.data.hasDone);
-        console.log(userResponse.data.hasDone);
+        setIsReady(true);
+        console.log("this is the user.hasdone", userResponse.data.hasDone);
       };
+
       fetchUserRes();
+      getAllJourneys();
+      getUserJourneys();
     }
   }, [isLoggedIn, user]);
+
+  useEffect(() => {
+    if (isReady) {
+      if (user && userHasDone.length === 0) {
+        navigate("/introduction");
+      }
+    }
+  }, [isReady, user, userHasDone, navigate]);
 
   return (
     <div className="Wrapper">
@@ -76,9 +86,9 @@ function HomePage() {
       )}
       {isLoggedIn && (
         <div className="Wrapper">
-          <div className="Homepageloggedin">
-            {/* {user && userHasDone.length === false && navigate("/introduction")} */}
+          {/* {user && userHasDone.length === 0 && navigate("/introduction")} */}
 
+          <div className="Homepageloggedin">
             <p>Your Subscriptions</p>
             <div className="Journey">
               {userJourneys &&
@@ -108,7 +118,6 @@ function HomePage() {
                           <img src={player} alt="play-symbol" />
                         </div>
                       </Link>
-                      {/* <img className="planet" src={Sun} alt="" /> */}
                     </div>
                   );
                 })}

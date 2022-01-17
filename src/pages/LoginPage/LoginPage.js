@@ -1,6 +1,5 @@
 // src/pages/LoginPage.js
 
-import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
@@ -8,7 +7,7 @@ import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
 
 function LoginPage({ setShow, show }) {
-  const { user } = useContext(AuthContext);
+  //const { user } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -42,7 +41,6 @@ function LoginPage({ setShow, show }) {
 
       console.log(token);
 
-      console.log("this is the user console.log", user);
       //if (user.hasDone.length === 0) {
       //  navigate("/profile");
       //}

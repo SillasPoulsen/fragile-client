@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
-import { Link } from "react-router-dom";
 
 import "./ProfilePage.css";
 
@@ -13,7 +12,6 @@ function ProfilePage() {
     try {
       const response = await authService.allUserNotes();
       setNotes(response.data);
-      console.log(response.data);
     } catch (error) {}
   };
 
