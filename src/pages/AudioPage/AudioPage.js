@@ -41,40 +41,38 @@ function EpisodePage() {
   }, [episodeId]);
 
   useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
+    let isSubscribed = true;
     if (user) {
       getEpisode();
     }
+    return () => (isSubscribed = false);
   }, [getEpisode, user]);
 
-  const handleSubmit = async (e) => {
-    let isSubscribed = true;
-    try {
-      // Prevent the page reload (default behavior
-      e.preventDefault();
+  function handleSubmit(e) {
+    // Prevent the page reload (default behavior)
+    e.preventDefault();
 
-      // Forcing the user to provide input
-      if (textAreaValue === "Your input") {
-        return;
-      }
+    // Forcing the user to provide input
+    if (textAreaValue === "Your input") {
+      return;
+    }
 
-      // Get the data from the state/inputs
-      const requestBody = {
-        textInput: textAreaValue,
-        public: radioValue,
-        episode: episodeId,
-      };
+    // Get the data from the state/inputs
+    const requestBody = {
+      textInput: textAreaValue,
+      public: radioValue,
+      episode: episodeId,
+    };
 
-      //send it to the DB
-      const response = await authService.postNote(requestBody);
-
+    //send it to the DB
+    authService.postNote(requestBody).then((response) => {
       setUser(response.data.userObj);
-      navigate("/episode/" + episodeId + "/notes");
-
       setTextAreaValue("");
       setradioValue(true);
-    } catch (error) {}
-    return () => (isSubscribed = false);
-  };
+      navigate("/episode/" + episodeId + "/notes");
+    });
+  }
 
   return (
     <div className="Audiocontent">

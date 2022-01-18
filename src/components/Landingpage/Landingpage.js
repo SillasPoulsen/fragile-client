@@ -18,9 +18,7 @@ function Landingpage() {
       </div>
       <div>
         <Link to="/login">
-          <a className="btn-login" href="{#}">
-            Login
-          </a>
+          <p className="btn-login">Login</p>
         </Link>
       </div>
     </div>

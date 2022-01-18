@@ -20,7 +20,6 @@ function HomePage() {
   const getAllJourneys = async () => {
     try {
       const response = await authService.journeys();
-
       setJourneys(response.data);
     } catch (error) {
       console.log(error);
@@ -35,18 +34,21 @@ function HomePage() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
+    let isSubscribed = true;
+
     if (isLoggedIn && user) {
       const fetchUserRes = async () => {
         const userResponse = await authService.allUserInfo();
         setuserHasDone(userResponse.data.hasDone);
         setIsReady(true);
-        console.log("this is the user.hasdone", userResponse.data.hasDone);
       };
 
       fetchUserRes();
       getAllJourneys();
       getUserJourneys();
     }
+    return () => (isSubscribed = false);
   }, [isLoggedIn, user]);
 
   useEffect(() => {
