@@ -5,6 +5,7 @@ import authService from "../../services/auth.service";
 import selfLove from "../../images/selflove 1.png";
 import Planet from "../../images/Group 3.png";
 import player from "../../images/Group 1 (5).png";
+import LandingPage from "../../components/Landingpage/Landingpage";
 
 import "./HomePage.css";
 
@@ -59,35 +60,11 @@ function HomePage() {
 
   return (
     <div className="Wrapper">
-      {!isLoggedIn && (
-        <>
-          <div className="HomepageNotLoggedIn">
-            <div className="selfLove">
-              <img src={selfLove} alt="Flawsfigure" />
-            </div>
-            <div>
-              <h1 className="logofrontpage">Flaws</h1>
-              <p>Because we all feel a little flawed at times</p>
-            </div>
-            <div className="signup">
-              <Link to="/signup">
-                <button className="btn-signup">Singup</button>
-              </Link>
-            </div>
-            <div>
-              <Link to="/login">
-                <a className="btn-login" href="{#}">
-                  Login
-                </a>
-              </Link>
-            </div>
-          </div>
-        </>
-      )}
+      {/* If the user is not logged in, it will load landing page */}
+      {!isLoggedIn && <LandingPage />}
+
       {isLoggedIn && (
         <div className="Wrapper">
-          {/* {user && userHasDone.length === 0 && navigate("/introduction")} */}
-
           <div className="Homepageloggedin">
             <p>Your Subscriptions</p>
             <div className="Journey">
