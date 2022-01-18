@@ -45,7 +45,7 @@ function JourneyPage() {
       }
     };
     getJourney();
-  }, [user]);
+  }, [journeyId, user]);
 
   return (
     <div className="content">

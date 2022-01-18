@@ -1,9 +1,8 @@
 import { AuthContext } from "../../context/auth.context";
 import { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
 import Planet from "../../images/Group 3.png";
-import player from "../../images/Group 1 (5).png";
 import LandingPage from "../../components/Landingpage/Landingpage";
 import JourneyCard from "../../components/JourneyCard/JourneyCard";
 

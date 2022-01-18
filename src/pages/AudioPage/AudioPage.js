@@ -9,13 +9,13 @@ import "./AudioPage.css";
 
 function EpisodePage() {
   const requestBody = useParams();
+  const navigate = useNavigate();
   const episodeId = requestBody.id;
   const [episode, setEpisode] = useState([]);
   const [note, setNote] = useState();
   const [textAreaValue, setTextAreaValue] = useState("Your input");
   const [radioValue, setradioValue] = useState(true);
   const [hasDone, setHasDone] = useState(false);
-  const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
 
   const handleChange = (event) => {
@@ -47,10 +47,12 @@ function EpisodePage() {
   }, [getEpisode, user]);
 
   const handleSubmit = async (e) => {
+    let isSubscribed = true;
     try {
       // Prevent the page reload (default behavior
       e.preventDefault();
 
+      // Forcing the user to provide input
       if (textAreaValue === "Your input") {
         return;
       }
@@ -71,11 +73,13 @@ function EpisodePage() {
       setTextAreaValue("");
       setradioValue(true);
     } catch (error) {}
+    return () => (isSubscribed = false);
   };
 
   return (
     <div className="Audiocontent">
       <AudioPlayer />
+
       <h1 className="title">{episode.title}</h1>
       <p>{episode.description}</p>
 

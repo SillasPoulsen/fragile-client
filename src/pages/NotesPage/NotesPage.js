@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Heart } from "react-feather";
 import "./NotesPage.css";
@@ -22,23 +22,23 @@ function NotesPage() {
     setLike(!like);
   };
 
-  const getNotes = async () => {
+  const getNotes = useCallback(async () => {
     try {
-      const response = await await authService.allNotes(episodeId);
+      const response = await authService.allNotes(episodeId);
       const allNotes = response.data.notes;
       setNotes(allNotes);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [episodeId]);
 
   useEffect(() => {
     getNotes();
-  }, []);
+  }, [getNotes]);
 
   useEffect(() => {
     getNotes();
-  }, [like]);
+  }, [getNotes, like]);
 
   return (
     <div>
