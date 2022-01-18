@@ -2,10 +2,10 @@ import { AuthContext } from "../../context/auth.context";
 import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
-import selfLove from "../../images/selflove 1.png";
 import Planet from "../../images/Group 3.png";
 import player from "../../images/Group 1 (5).png";
 import LandingPage from "../../components/Landingpage/Landingpage";
+import JourneyCard from "../../components/JourneyCard/JourneyCard";
 
 import "./HomePage.css";
 
@@ -71,15 +71,7 @@ function HomePage() {
               {userJourneys &&
                 userJourneys.map((oneUserJourney) => {
                   return (
-                    <div className="JourneyCard" key={oneUserJourney._id}>
-                      <Link to={`/journey/${oneUserJourney._id}`}>
-                        <h3>{oneUserJourney.name}</h3>
-                        <div className="player">
-                          <img src={player} alt="play-symbol" />
-                        </div>
-                      </Link>
-                      <img className="planet" src={Planet} alt="" />
-                    </div>
+                    <JourneyCard oneJourney={oneUserJourney} Planet={Planet} />
                   );
                 })}
             </div>
@@ -87,16 +79,7 @@ function HomePage() {
             <div className="Journey">
               {journeys.length > 0 &&
                 journeys.map((oneJourney) => {
-                  return (
-                    <div className="JourneyCard" key={oneJourney._id}>
-                      <Link to={`/journey/${oneJourney._id}`}>
-                        <h3>{oneJourney.name}</h3>
-                        <div className="player">
-                          <img src={player} alt="play-symbol" />
-                        </div>
-                      </Link>
-                    </div>
-                  );
+                  return <JourneyCard oneJourney={oneJourney} />;
                 })}
             </div>
           </div>
