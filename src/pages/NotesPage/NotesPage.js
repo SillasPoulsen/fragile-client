@@ -15,10 +15,9 @@ function NotesPage() {
 
   const handleLike = async (id) => {
     //LIKE THE NOTE
-    const response = await authService.likeNote({ id });
-    console.log(response);
+    await authService.likeNote({ id });
 
-    //change the state to run again a useEffect
+    //change the state to run again on useEffect
     setLike(!like);
   };
 
@@ -27,9 +26,7 @@ function NotesPage() {
       const response = await authService.allNotes(episodeId);
       const allNotes = response.data.notes;
       setNotes(allNotes);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, [episodeId]);
 
   useEffect(() => {
