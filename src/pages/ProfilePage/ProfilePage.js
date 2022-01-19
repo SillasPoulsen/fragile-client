@@ -21,17 +21,17 @@ function ProfilePage() {
 
   return (
     <div>
-      <h1>Profile Page</h1>
       {isLoggedIn && (
         <div className="wrapper">
+          <h1>Profile Page</h1>
           <p>This is all your notes</p>
           <div className="bottom">
             {notes.length > 0 &&
               notes.map((note, i) => {
                 return (
-                  <div className="noteCard" key={i}>
+                  <div className="card" key={i}>
                     {/* <Link to={`/journey/${oneJourney._id}`}> */}
-                    <p>{note.textInput}</p>
+                    <p className="profile-card-text">{note.textInput}</p>
                     {/* </Link> */}
                   </div>
                 );

@@ -1,29 +1,27 @@
-.noteCard {
-  padding: 10px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fefbf8;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  max-width: 400px;
-  min-width: 400px;
-  min-height: 200px;
-  margin-top: 20px;
-  align-content: center;
-}
+/* .noteCard { */
+/* padding: 10px 0px; */
+/* display: flex; */
+/* justify-content: center; */
+/* align-items: center; */
+/* background: #fefbf8; */
+/* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25); */
+/* border-radius: 20px; */
+/* max-width: 400px; */
+/* min-width: 200px; */
+/* min-height: 200px; */
+/* margin-top: 20px; */
+/* align-content: center; */
+/* } */
 
-.noteCard > p {
+.card > p {
   max-width: 200px;
 }
 
 .likes {
   max-width: 60px;
-  min-width: 60px;
 }
 
 .cardText {
-  max-width: 190px;
   min-width: 190px;
   text-align: justify;
 }
@@ -45,5 +43,5 @@ Heart:hover {
 }
 
 .heart {
-  margin: 0 auto;
+  margin: 0px 10px 0px 30px;
 }

@@ -60,7 +60,7 @@ function HomePage() {
   }, [isReady, user, userHasDone, navigate]);
 
   return (
-    <div className="Wrapper">
+    <div className="wrapper">
       {/* If the user is not logged in, it will load landing page */}
       {!isLoggedIn && <LandingPage />}
 

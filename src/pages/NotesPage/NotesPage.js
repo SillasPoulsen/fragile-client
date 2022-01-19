@@ -39,8 +39,8 @@ function NotesPage() {
 
   return (
     <div>
-      <h1>Other peoples thoughts</h1>
       <div className="wrapper">
+        <h1>Other peoples thoughts</h1>
         {notes &&
           notes.map((note) => {
             return (
