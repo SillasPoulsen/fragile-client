@@ -166,21 +166,17 @@ notes: [{ type: Schema.Types.ObjectId, ref: "Note" }],
 | PUT         | `/api/notes/:id`   | { textInput, scaleInput }                | 200            | 400          | edit note                                                    |
 | GET         | `/api/journey/:id` |                                          |                |              | show the next episode in the journey.                        |
 
-## Links
 
-### Trello/Kanban
-
-[Link to your trello board](https://trello.com/b/PBqtkUFX/curasan) or a picture of your physical board
 
 ### Git
 
-The url to your repository and to your deployed project
+Url to my repositories and my deployed project
 
-[Client repository Link](https://github.com/screeeen/project-client)
+Client repository Link: https://github.com/SillasPoulsen/fragile-client
 
-[Server repository Link](https://github.com/screeeen/project-server)
+Server repository Link: https://github.com/SillasPoulsen/fragile-server
 
-[Deployed App Link](http://heroku.com/)
+Deployed App Link: https://inspiring-shirley-2099b2.netlify.app/
 
 
 
